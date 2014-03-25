@@ -1,22 +1,45 @@
-var assert = require('assert')
-    repunt = require('../')
+var assert = require('assert'),
+    http = require('http'),
+    repunt = require('../');
 
-;
+http.createServer(function (req,res){
+    switch (req.url){
+        case '/':
+            return res.end('page /');
+        case '/foo':
+            return res.end('page /foo');
+        case '/bar':
+            return res.end('page /bar');
+            
+    }
+})
+.listen(8899);
+
+
 
 describe('repunt', function (){
     it('should inherit from event emitter', function (done){
-        var rpnt = repunt();
-        rpnt
+        repunt()
             .on('test',done)
             .emit('test');
     });
-});
-
-/*
-describe("once() filter", function () {
-    it("should prevent (re-)enqueing of same url", function () {
-
-        assert.equal(1,2);
+    /*it('should emit start event', function (done){
+        repunt()
+            .on('start',done)
+            .start();
+    });*/
+    it('should emit done event', function (done){
+        repunt()
+            .on('done',done)
+            .start();
+    });
+    it('should emit enqueue event', function (done){
+        repunt()
+            .on('enqueue',function (task){
+                assert.equal(task.url,'http://localhost:8899/');
+                done();
+            })
+            .enqueue('http://localhost:8899/')
+            .start();
     });
 });
-*/
