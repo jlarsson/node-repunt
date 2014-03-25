@@ -1,21 +1,31 @@
 {
-  "name": "repunt",
-  "main": "index.js",
-  "tags": [
-    "crawl",
-    "spider",
-    "util",
-    "utility"
-  ],
-  "version": "0.1.1",
-  "engines": [
-    "node >= 0.8.0"
-  ],
-  "dependencies": {
-    "cheerio": "~0.13.1",
-    "lodash": "~2.4.1",
-    "q": "~2.0.0",
-    "request": "~2.34.0",
-    "mkdirp": "~0.3.5"
-  }
+    "name": "repunt",
+    "main": "index.js",
+    "license": "MIT",
+    "url": "https://github.com/jlarsson/node-repunt",
+    "tags": [
+        "crawl",
+        "crawler",
+        "spider",
+        "util",
+        "utility"
+    ],
+    "version": "0.1.1",
+    "engines": {
+        "node": "~0.8.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/jlarsson/node-repunt.git"
+    },
+    "bugs": {
+        "url": "http://github.com/jlarsson/node-repunt/issues"
+    },
+    "dependencies": {
+        "cheerio": "~0.13.1",
+        "lodash": "~2.4.1",
+        "q": "~2.0.0",
+        "request": "~2.34.0",
+        "mkdirp": "~0.3.5"
+    }
 }
