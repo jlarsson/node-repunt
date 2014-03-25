@@ -8,7 +8,7 @@ describe('repunt', function (){
     var httpServer = http.createServer(function (req,res){
         switch (req.url){
             case '/filter-test':
-                return res.end('start page');
+                return res.end('hello filtered world');
         }
         res.end(404);
     });
@@ -48,11 +48,11 @@ describe('repunt', function (){
             .use({
                 init: function (task, next, ctx){
                     assert(!task.error, 'task should not have error: ' + task.error);
-                    assert.equal(task.url,'http://localhost:8899/');
+                    assert.equal(task.url,testUrl);
                     done();
                 }
             })
-            .enqueue('http://localhost:8899/')
+            .enqueue(testUrl)
             .start();
     });
     it('should call request filter', function (done){
@@ -74,7 +74,7 @@ describe('repunt', function (){
                     assert(!task.error, 'task should not have error: ' + task.error);
                     assert(task.hasResult(),'complete should only be called for tasks with results');
                     assert(!!task.response, 'completed tasks should have a response');
-                    assert.equal(task.body,'start page', 'completed tasks should have a body');
+                    assert.equal(task.body,'hello filtered world', 'completed tasks should have a body');
                     assert.equal(task.url,testUrl);
                     done();
                 }
