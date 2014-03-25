@@ -4,24 +4,17 @@ var repunt = require('./../index.js')
     path = require('path'),
     cheerio = require('cheerio');
 
-var spider = new repunt()
+var spider = new repunt({connections: 8})
+    .use(repunt.cheerio())
+    .use(repunt.followLinks())
+    .use(repunt.followImages())
     .use(repunt.stayInRange(['http://localhost/']))
     .use(repunt.trimHashes())
     .use(repunt.once())
-    .use({
-        enqueue: function (task, next) {
-            if (task.url.indexOf('.jpg') > 0) {
-                task.cancel();
-            }
-            next();
-        }
-    })
-    .use(repunt.atMost(40))
-    .use(repunt.cheerio())
+    .use(repunt.atMost(10000))
     .use(repunt.fileCache('./temp/.cache'));
 
 spider.enqueue('http://localhost/');
-//spider.enqueue('http://wiki.zitac.net/');
 spider.start();
 
 
