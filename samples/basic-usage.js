@@ -4,21 +4,16 @@ var repunt = require('./../index.js')
     path = require('path'),
     cheerio = require('cheerio');
 
-var spider = new repunt({connections: 8})
+repunt({connections: 8})
     .use(repunt.cheerio())
     .use(repunt.followLinks())
     .use(repunt.followImages())
     .use(repunt.stayInRange(['http://localhost/']))
     .use(repunt.trimHashes())
     .use(repunt.once())
-    .use(repunt.atMost(10000))
-    .use(repunt.fileCache('./temp/.cache'));
+    .use(repunt.atMost(10))
+    .use(repunt.fileCache('./temp/.cache'))
 
-spider.enqueue('http://localhost/');
-spider.start();
-
-
-spider
     .on('start', function (){
         console.log('SPIDER START');
     })
@@ -37,9 +32,11 @@ spider
             console.log(task.$('title').text());
         }
     })
-    .on('error', function (error, task) {
+    .on('error', function (error) {
         console.log('ERROR',error);
     })
 
-;
+    .enqueue('http://localhost/')
+    .start();
+
 
