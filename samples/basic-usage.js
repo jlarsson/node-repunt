@@ -11,7 +11,7 @@ repunt({connections: 8})
     .use(repunt.stayInRange(['http://localhost/']))
     .use(repunt.trimHashes())
     .use(repunt.once())
-    .use(repunt.atMost(10))
+    .use(repunt.atMost(1000))
     .use(repunt.fileCache('./temp/.cache'))
 
     .on('start', function (){
