@@ -9,9 +9,10 @@ repunt({connections: 8})
     .use(repunt.followLinks())
     .use(repunt.followImages())
     .use(repunt.stayInRange(['http://localhost/']))
+    .use(repunt.ignoreQueryStrings(['returnurl']))
     .use(repunt.trimHashes())
     .use(repunt.once())
-    .use(repunt.atMost(1000))
+    .use(repunt.atMost(200))
     .use(repunt.fileCache('./temp/.cache'))
 
     .on('start', function (){
