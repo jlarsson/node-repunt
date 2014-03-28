@@ -154,4 +154,4 @@ Content processing filters should have the order
 3. followImages (depends on cheerio)
 
 # Testing
-Testsuite for _mocha_ is under [./test]().
+_mocha_-testsuite can be found in the _test_ folder.
