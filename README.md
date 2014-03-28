@@ -1,6 +1,6 @@
 # node-repunt
 
-Webcrawler for node
+Webcrawler for node.
 
 # Installation
 
@@ -15,6 +15,7 @@ _repunt_ is a webcrawler characterized by
 - optional caching, enabling incremental crawling and offline analysis
 - markup analysis through [cheerio](https://github.com/MatthewMueller/cheerio)
 - extensible filter architecture, allowing inspection, modification, prevention and enqueing of requests
+- uses the best of the best libaries: [request](https://github.com/mikeal/request), [cheerio](https://github.com/MatthewMueller/cheerio), [lodash](https://github.com/lodash/lodash), [q](https://github.com/kriskowal/q)
 
 # Quick sample
 This sample crawls localhost, starting at http://localhost/start, following links until at most 10 distinct pages has been crawled.
@@ -104,8 +105,8 @@ Tasks are the objects keeping state about requests.
     response:  <response object set by setCompleted>
     body:  <body set by setCompleted>
     $: <typically set by cheerio filter>,
-    ext: <object, storage for filter specifik data>,
-    promise: <promise object>,
+    ext: <object, storage for filter specific data>,
+    promise: <promise object allowing stuff like task.promise.then(...) >,
     cancel: function () {/* cancel further processing of this task */ },
     setCompleted: function () {/* mark this task as fully handled */ },
     setResult: function (error, response, body) {/* set result from http fetch och cache loading */ },
