@@ -3,11 +3,11 @@ var assert = require('assert'),
     repunt = require('../');
 
 describe('repunt.atmost(n)', function (){
-    var testUrl = 'http://localhost:8899/atmost-test';
+    var testUrl = 'http://localhost:8899/atmost';
     var testPort = 8899;
 
     var httpServer = http.createServer(function (req,res){
-        return res.end('hello evented world');
+        return res.end('hello world');
     });
     
     before(function (){

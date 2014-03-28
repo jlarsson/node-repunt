@@ -26,7 +26,7 @@ describe('repunt.stayInRange()', function (){
     });
 
     
-    it('should prevent enqueueing of doamin not in whitelist', function (done){
+    it('should prevent enqueueing of url with domain not in whitelist', function (done){
         var validUrls = {};
         validUrls[testUrl] = true;
         repunt()
