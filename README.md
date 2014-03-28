@@ -28,7 +28,7 @@ repunt({connections: 8})    // throttle to atmost 8 concurrent requests
     .use(repunt.followLinks())  // follow <a href=...>
     .use(repunt.stayInRange(['http://localhost/'])) // dont stray away from this domain
     .use(repunt.trimHashes())   // ignore hashes: /start#about becomes /start
-    .use(repunt.once()) // visit ecah distinct url at most once
+    .use(repunt.once()) // visit each distinct url at most once
     .use(repunt.atMost(10)) // limit to 10 requests all in all
     .use(repunt.fileCache('./temp/.cache')) // fetch from/save to cache
     .on('start', function (){ // called once before any other event
@@ -56,7 +56,7 @@ repunt({connections: 8})    // throttle to atmost 8 concurrent requests
 ```
 
 # Motivation
-Why another crawler? I participated in several projects where public websites should be migrated to other platforms. In one particular case, it was an e-commerce without a product datase, so my only option was to crawl the existing site and pull out product information (descriptions, variant, related products, images, ...) from the web. This is generally timeconsuming and requires a lot of development of the analysis part. Having a nice crawler with good caching support (speedup is significant!) made my life easier.
+Why another crawler? I participated in several projects where public websites should be migrated to other platforms. In one particular case, it was an e-commerce without a product database, so my only option was to crawl the existing site and pull out product information (descriptions, variant, related products, images, ...) from the web. This is generally timeconsuming and requires a lot of development of the analysis part. Having a nice crawler with good caching support (speedup is significant!) made my life easier.
 
 # Filter cheatsheet
 
