@@ -24,7 +24,7 @@ describe('repunt.atmost(n)', function (){
         
         var r = repunt()
             .use(repunt.atMost(max))
-            .on('complete', function (task) {
+            .on('enqueue', function (task) {
                 ++actual;
                 assert(actual <= max, 'repunt.atMost(n) should discard all n+1 requests');
             })
@@ -33,6 +33,6 @@ describe('repunt.atmost(n)', function (){
                 done();
             })
             .start();
-        for(var i = 0; i < 20; ++i) { r.enqueue(testUrl); }
+        for(var i = 0; i < max*10; ++i) { r.enqueue(testUrl); }
     });
 });

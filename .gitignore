@@ -5,6 +5,7 @@ logs
 # Temporaries
 temp
 tmp
+*.tgz
 
 # Runtime data
 pids
