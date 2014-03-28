@@ -2,7 +2,7 @@ var assert = require('assert'),
     http = require('http'),
     repunt = require('../');
 
-describe('repunt', function (){
+describe('repunt (filters, general)', function (){
     var testUrl = 'http://localhost:8899/filter-test';
     var testPort = 8899;
     var httpServer = http.createServer(function (req,res){

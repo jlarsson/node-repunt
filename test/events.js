@@ -2,7 +2,7 @@ var assert = require('assert'),
     http = require('http'),
     repunt = require('../');
 
-describe('repunt', function (){
+describe('repunt (event emitter)', function (){
     var testUrl = 'http://localhost:8899/event-test';
     var testPort = 8899;
 
@@ -11,7 +11,8 @@ describe('repunt', function (){
             case '/event-test':
                 return res.end('hello evented world');
         }
-        res.end(404);
+        res.statusCode = 404;
+        res.end('?');
     });
     
     before(function (){
@@ -52,6 +53,17 @@ describe('repunt', function (){
             .enqueue(testUrl)
             .start();
     });
+    it('should emit error event', function (done){
+        repunt()
+            .on('error',function (error, task) { 
+                assert.equal(error, '404');
+                assert.equal(task.error, '404');
+                done(); 
+            })
+            .enqueue(testUrl + '/this url gives 404')
+            .start();
+    });
+    
     it('should emit done event', function (done){
         repunt()
             .on('done',done)
