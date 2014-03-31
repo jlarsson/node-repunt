@@ -11,6 +11,7 @@ api.followLinks = require('./lib/filters/followlinks.js');
 api.followImages = require('./lib/filters/followimages.js');
 api.ignoreQueryStrings = require('./lib/filters/ignorequerystrings.js');
 api.once = require('./lib/filters/once.js');
+api.setFakeResult = require('./lib/filters/setfakeresult.js');
 api.stayInRange = require('./lib/filters/stayinrange.js');
 api.trimHashes = require('./lib/filters/trimhashes.js');
 
