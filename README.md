@@ -79,10 +79,10 @@ Enqueue at most 10 urls. Great for testing.
 Response is parsed using cheerio and stored in _task.$_. Useful for DOM-inspection.
 
 ##### .use(repunt.followLinks())
-If the cheerio filter is used, and the content type is something like _text/*_, links from _\<a href>_ are enqueued to the repunt instance.
+If the cheerio filter is used, and the content type is something like _text/*_, links from `<a href>` are enqueued to the repunt instance.
 
 ##### .use(repunt.followImages())
-Similar to _followLinks_ but enqueues _\<img src>_ instead.
+Similar to _followLinks_ but enqueues `<img src>` instead.
 
 ##### .use(repunt.stayInRange(['http://site1/', 'http://site2/']))
 Prevent repunt from straying away from site1 and site2, even crawled pages has links to this and that.
@@ -115,7 +115,7 @@ Tasks are the objects keeping state about requests.
 Tasks are created from within repunt.enqueue() and are then passed around to filters and events.
 
 ## Filters
-The drivig force in repunt are filters. A filter is expected to implement at least one of the methods in the canonical do-nothing example below
+The driving force in repunt are filters. A filter is expected to implement some or all of the methods in the canonical do-nothing example below
 
 ```javascript
 {
@@ -129,16 +129,17 @@ The drivig force in repunt are filters. A filter is expected to implement at lea
 
 The _ctx_ parameter is the actual repunt instance and _next_ is a function that must be called for further processing of a task.
 Depending on situation, further processing of a task an be prevented by
-* not calling _next()_
-* calling _task.cancel()_
-* calling _task.setCompleted()_
+* not calling `next()`
+* calling `task.cancel()`
+* calling `task.setCompleted()`
+* calling `task.request.abort(); ... task.setResult(error,response,body)`
 
 The lifecycle is
-* _start_ is called once per filter instance. Useful for complex initial setup.
-* _enqueue_ is called when repunt.enqueue() is called. Some filters prevent furher execution in this step (_once_, _atMost_, _stayInRange_), while others like _trimHashes_ and _ignoreQueryStrings_ modifies _task.url_.
-* _init_ is called right before the actual request object is created
-* _request_ is called then task.request is set. This is a good place to modify headers and stuff.
-* _complete_ is called when the task finally has a result (error, response, body)
+* `start(...)` is called once per filter instance. Useful for complex initial setup.
+* `enqueue(...)` is called when `repunt.enqueue()` is called. Some filters prevent furher execution in this step (_once_, _atMost_, _stayInRange_), while others like _trimHashes_ and _ignoreQueryStrings_ modifies _task.url_.
+* `init(...)` is called right before the actual request object is created
+* `request(...)` is called when `task.request` is set. This is a good place to modify headers and stuff.
+* `complete(...)` is called when the task finally has a result (error, response, body)
  
 
 Ordering of filters are important. For the standard filters the following order of url/request queue manipulating filters gives meaningful results:
