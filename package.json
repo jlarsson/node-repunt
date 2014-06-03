@@ -1,6 +1,6 @@
 {
     "name": "repunt",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Simple, configurable and extensible webcrawler",
     "keywords": ["crawl", "crawler", "spider", "util", "utility"],
     "homepage": "https://github.com/jlarsson/node-repunt",

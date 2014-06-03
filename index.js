@@ -1,4 +1,5 @@
-var repunt = require('./lib/repunt.js');
+var repunt = require('./lib/repunt.js'),
+    request = require('request');
 
 var api = function (options){ return new repunt(options||{}); };
 
